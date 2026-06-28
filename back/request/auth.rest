@@ -1,0 +1,33 @@
+### Registrando usuario
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "email":"cuchodiego9@gmail.com",
+    "password":"12345"
+}
+
+### Verificando email
+POST http://localhost:3000/auth/verify-email
+Content-Type: application/json
+
+{
+    "token": "bb6f2549-da5c-4e64-9c0e-e40a2b4627b3"
+}
+
+### Reenviando email
+POST http://localhost:3000/auth/resend-verification
+Content-Type: application/json
+
+{
+    "email": "cuchodiego9@gmail.com"
+}
+
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email":"cuchodiego9@gmail.com",
+    "password": "12345"
+}
