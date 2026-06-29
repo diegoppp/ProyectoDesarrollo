@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom, Observable, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AuthResponse, LoginDto, RegisterDto } from '../models/auth';
 import { SafeUser } from '../models/user';
 import { Router } from '@angular/router';
@@ -64,8 +64,11 @@ export class AuthService {
     this.user.set(res.user);
   }
 
-   resendVerification(email: string){
-    console.log(this.api,email)
-     return firstValueFrom(this.http.post(`${this.api}/resend-verification`, {email} ))
-  }
+   resendVerification(){
+      return this.http.post(`${this.api}/resend-verification`, {})
+   }
+
+   verifyEmail(token: string){
+      return this.http.post<{message: string}>(`${this.api}/verify-email`, { token })
+   }
 }

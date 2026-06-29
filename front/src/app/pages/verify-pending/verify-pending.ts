@@ -1,19 +1,16 @@
-import { Component, inject, Input} from "@angular/core";
-import { AuthService } from "../../services/auth.service";
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
-    selector: 'app-login',
-    imports: [],
-    templateUrl: './verify-pending.html',
-    styleUrl: './verify-pending.css',
+  selector: 'app-verify-pending',
+  imports: [],
+  templateUrl: './verify-pending.html',
+  styleUrl: './verify-pending.css',
 })
-export class VerifyPendingPage  {
-    email: string = sessionStorage.getItem("pending_email") || ""
+export class VerifyPendingPage {
+  private auth = inject(AuthService);
 
-    private auth = inject(AuthService)
-
-     resendVerification() {
-        console.log("verify-pending page", this.email)
-        this.auth.resendVerification(this.email)
-    }
+  resendVerification() {
+    this.auth.resendVerification().subscribe();
+  }
 }

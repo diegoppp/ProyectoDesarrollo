@@ -10,8 +10,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { LoginService } from './service/login.service';
-
-
+import { JwtStrategy } from './service/jwt.strategy';
 
 @Module({
   imports: [
@@ -30,7 +29,6 @@ import { LoginService } from './service/login.service';
         database: configService.get<string>('DB_DATABASE', 'practico_final'),
         autoLoadEntities: true,
         synchronize: true,
-
       }),
     }),
     MailerModule.forRootAsync({
@@ -46,7 +44,7 @@ import { LoginService } from './service/login.service';
           },
         },
         defaults: {
-          from: '"No Reply" <noreply@desarrollo-software.com>', 
+          from: '"No Reply" <noreply@desarrollo-software.com>',
         },
       }),
     }),
@@ -55,14 +53,19 @@ import { LoginService } from './service/login.service';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'), 
-        signOptions: { expiresIn: '1d' }, 
+        secret: configService.get<string>('JWT_SECRET'),
+        signOptions: { expiresIn: '1d' },
       }),
     }),
-    TypeOrmModule.forFeature([UserEntity])
+    TypeOrmModule.forFeature([UserEntity]),
   ],
   controllers: [AuthController],
-  providers: [RegisterUserService, VerifyEmailService,ResendVerificationService,LoginService],
-
+  providers: [
+    RegisterUserService,
+    VerifyEmailService,
+    ResendVerificationService,
+    LoginService,
+    JwtStrategy,
+  ],
 })
-export class AppModule { }
+export class AppModule {}

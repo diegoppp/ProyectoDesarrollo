@@ -33,6 +33,20 @@
                 </td>
               </tr>
               <tr>
+                <th class="ps-0">Estado</th>
+                <td>
+                  @if (user.isVerified) {
+                    <span class="badge bg-success">
+                      <i class="bi bi-patch-check-fill me-1"></i>Verificado
+                    </span>
+                  } @else {
+                    <span class="badge bg-secondary">
+                      <i class="bi bi-exclamation-circle me-1"></i>No verificado
+                    </span>
+                  }
+                </td>
+              </tr>
+              <tr>
                 <th class="ps-0">Registrado</th>
                 <td><i class="bi bi-calendar me-1 text-muted"></i>{{ user.createdAt | date:'medium' }}</td>
               </tr>
