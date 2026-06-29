@@ -65,10 +65,14 @@ export class AuthService {
   }
 
    resendVerification(){
-      return this.http.post(`${this.api}/resend-verification`, {})
+    return this.http.post(`${this.api}/resend-verification`, {})
    }
 
    verifyEmail(token: string){
       return this.http.post<{message: string}>(`${this.api}/verify-email`, { token })
    }
+
+  forgotPassword(email:string, token:string){
+   return this.http.post(`${this.api}/forgot-password`, { email, token });
+  }
 }

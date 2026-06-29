@@ -8,10 +8,10 @@
         </div>
 
         @if (error) {
-          <div class="alert alert-danger d-flex align-items-center" role="alert">
-            <i class="bi bi-exclamation-triangle me-2"></i>
-            {{ error }}
-          </div>
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+          <i class="bi bi-exclamation-triangle me-2"></i>
+          {{ error }}
+        </div>
         }
 
         <form (ngSubmit)="submit()" #form="ngForm">
@@ -19,16 +19,8 @@
             <label for="email" class="form-label fw-medium">Email</label>
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-              <input
-                id="email"
-                type="email"
-                class="form-control"
-                [(ngModel)]="email"
-                name="email"
-                required
-                email
-                placeholder="ejemplo@correo.com"
-              />
+              <input id="email" type="email" class="form-control" [(ngModel)]="email" name="email" required email
+                placeholder="ejemplo@correo.com" />
             </div>
           </div>
 
@@ -36,30 +28,35 @@
             <label for="password" class="form-label fw-medium">Contraseña</label>
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-lock"></i></span>
-              <input
-                id="password"
-                type="password"
-                class="form-control"
-                [(ngModel)]="password"
-                name="password"
-                required
-                placeholder="••••••••"
-              />
+              <input id="password" type="password" class="form-control" [(ngModel)]="password" name="password" required
+                placeholder="••••••••" />
             </div>
           </div>
 
           <button type="submit" class="btn btn-primary w-100" [disabled]="form.invalid || loading()">
             @if (loading()) {
-              <span class="spinner-border spinner-border-sm me-1" role="status"></span>
+            <span class="spinner-border spinner-border-sm me-1" role="status"></span>
             }
             Ingresar
           </button>
         </form>
+        <div class="form-group password-container">
+        </div>
 
+        <div class="forgot-password-link-container">
+          <a routerLink="/forgot-password" class="forgot-link">
+            ¿Olvidaste tu contraseña?
+          </a>
+        </div>
         <p class="mt-4 text-center text-muted mb-0">
           ¿No tenés cuenta? <a routerLink="/register">Registrate</a>
         </p>
       </div>
     </div>
   </div>
+<div class="forgot-link-container">
+  <a routerLink="/forgot-password" class="forgot-link">
+    ¿Olvidaste tu contraseña?
+  </a>
+</div>
 </div>

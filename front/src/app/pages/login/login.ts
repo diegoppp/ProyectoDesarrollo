@@ -1,18 +1,21 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink,RouterModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class LoginPage {
   private auth = inject(AuthService);
   private router = inject(Router);
+  private  toast= inject(ToastService)
+  
 
   email = '';
   password = '';
@@ -27,6 +30,7 @@ export class LoginPage {
       this.router.navigate(['/']);
     } catch (err: any) {
       this.error = err.error?.message || 'Error al iniciar sesión';
+      this.toast.error("Credenciales inválidas");
     } finally {
       this.loading.set(false);
     }

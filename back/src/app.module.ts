@@ -11,6 +11,8 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { LoginService } from './service/login.service';
 import { JwtStrategy } from './service/jwt.strategy';
+import { ForgotPasswordService } from './service/forgot-password.services';
+import { ResetPasswordService } from './service/reset-password.service';
 
 @Module({
   imports: [
@@ -66,6 +68,9 @@ import { JwtStrategy } from './service/jwt.strategy';
     ResendVerificationService,
     LoginService,
     JwtStrategy,
+    ForgotPasswordService,
+    ResetPasswordService
+
   ],
 })
 export class AppModule {}

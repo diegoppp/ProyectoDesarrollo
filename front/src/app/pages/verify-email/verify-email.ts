@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-verify-email',
@@ -11,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 export class VerifyEmailPage implements OnInit {
   private route = inject(ActivatedRoute);
   private auth = inject(AuthService);
-
+  private toast = inject(ToastService)
   success = signal(false);
   error = signal(false);
   loading = signal(true);
@@ -29,10 +30,12 @@ export class VerifyEmailPage implements OnInit {
       next: () => {
         this.success.set(true);
         this.loading.set(false);
+        this.toast.success("Email verificado correctamente");
       },
       error: () => {
         this.error.set(true);
         this.loading.set(false);
+        this.toast.error("Token inválido o expirado");
       },
     });
   }

@@ -20,4 +20,10 @@ export class UserEntity {
 
     @Column({ type: 'varchar', nullable: true, name: 'verification_token' })
     verificationToken!: string | null;
+
+    @Column({nullable:true,name: 'reset_password_token'})
+    resetPasswordToken?:string ;
+    
+  @Column({ type: 'timestamp', nullable: true, name: 'reset_password_expires' })
+    resetPasswordExpires?: Date ;
 }
